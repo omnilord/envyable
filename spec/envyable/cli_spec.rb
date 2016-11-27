@@ -72,7 +72,7 @@ describe Envyable::CLI do
   describe 'version' do
     it 'should report Envyable\'s current version' do
       out, err = capture_io { cli.version }
-      err.must_equal ''
+      err.must_be_empty
       out.strip.must_equal "Envyable #{Envyable::VERSION}"
     end
   end
