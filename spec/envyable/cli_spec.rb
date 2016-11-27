@@ -1,5 +1,6 @@
 require File.expand_path('../../spec_helper', __FILE__)
 require File.expand_path('../../../lib/envyable/cli', __FILE__)
+require File.expand_path('../../../lib/envyable/version', __FILE__)
 
 describe Envyable::CLI do
   before do
@@ -65,6 +66,14 @@ describe Envyable::CLI do
       File.readlines(spring_rb).none? { |line| line == 'Spring.watch \'config/env.yml\'' }.must_equal true
       capture_io { cli.install }
       File.readlines(spring_rb).any? { |line| line == 'Spring.watch \'config/env.yml\'' }.must_equal true
+    end
+  end
+
+  describe 'version' do
+    it 'should report Envyable\'s current version' do
+      out, err = capture_io { cli.version }
+      err.must_equal ''
+      out.strip.must_equal "Envyable #{Envyable::VERSION}"
     end
   end
 end

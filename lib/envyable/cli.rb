@@ -26,5 +26,10 @@ module Envyable
         end
       end
     end
+
+    desc 'version', 'Show version of bundled Envyable'
+    def version
+      puts "Envyable #{Envyable::VERSION}"
+    end
   end
 end
